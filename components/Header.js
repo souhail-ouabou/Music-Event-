@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import styles from '../styles/Header.module.css'
+import styles from '@/styles/Header.module.css'
 export default function Header() {
   return (
     <header className={styles.header}>
@@ -7,6 +7,7 @@ export default function Header() {
              <Link href='/'>
                 <a>DJ Events</a>
              </Link>
+        </div>
              <nav>
                 <ul>
                     <li>
@@ -16,7 +17,6 @@ export default function Header() {
                     </li>
                 </ul>
              </nav>
-        </div>
     </header>
   )
 }
