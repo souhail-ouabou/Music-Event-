@@ -13,7 +13,7 @@ export default function Layout({ title, keywords, description, children }) {
                 <meta name="description" content={description} />
                 <meta name="keywords" content={keywords} />
             </Head>
-            <Header />
+            <Header />                  
             {router.pathname === '/' && <Showcase />}
             <div className={styles.container}>{children}</div>
             <Footer />
