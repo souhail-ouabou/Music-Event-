@@ -1,6 +1,7 @@
 import moment from 'moment'
 import { useState } from 'react'
 import Layout from '@/components/Layout'
+import Modal from '@/components/Modal'
 import Link from 'next/Link'
 import { useRouter } from 'next/router'
 import { API_URL } from '@/config/index'
@@ -9,6 +10,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Image from 'next/image'
 import { FaImage } from 'react-icons/fa'
+
 
 export default function EditEventPage({ evt }) {
     console.log(evt)
@@ -26,6 +28,7 @@ export default function EditEventPage({ evt }) {
             ? evt.data.attributes.image.data.attributes.formats.thumbnail.url
             : null
     )
+    const [showModal,setShowModal] = useState(false)
     const router = useRouter()
 
     const handleSubmit = async (e) => {
@@ -153,10 +156,14 @@ export default function EditEventPage({ evt }) {
             )}
 
             <div>
-                <button className="btn-secondary">
+                <button className="btn-secondary" onClick={()=> setShowModal(true)}>
                     <FaImage /> Set Image
                 </button>
             </div>
+
+            <Modal show={showModal} onClose={()=> setShowModal(false)}>
+                IMAGE UPLOAD
+            </Modal>
         </Layout>
     )
 }
