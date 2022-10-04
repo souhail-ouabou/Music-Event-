@@ -2,6 +2,7 @@ import moment from 'moment'
 import { useState } from 'react'
 import Layout from '@/components/Layout'
 import Modal from '@/components/Modal'
+import ImageUpload from '@/components/ImageUpload'
 import Link from 'next/Link'
 import { useRouter } from 'next/router'
 import { API_URL } from '@/config/index'
@@ -64,6 +65,13 @@ export default function EditEventPage({ evt }) {
         const { name, value } = e.target
         setValues({ ...values, [name]: value })
     }
+    const imageUploaded = async (e) => {
+         const res = await fetch(`${API_URL}/api/events/${evt.id}?populate=*`)
+      const data = await res.json()
+          setImagePreview(data.image.formats.thumbnail.url)
+         setShowModal(false)
+      }
+    
     return (
         <Layout title="Add New Event">
             <Link href="/events">Go Back</Link>
@@ -162,7 +170,7 @@ export default function EditEventPage({ evt }) {
             </div>
 
             <Modal show={showModal} onClose={()=> setShowModal(false)}>
-                IMAGE UPLOAD
+                <ImageUpload evtId={evt.data.id}  imageUploaded={imageUploaded}/>
             </Modal>
         </Layout>
     )
