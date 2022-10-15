@@ -1,9 +1,8 @@
 import EventItem from '@/components/EventItem'
 import Layout from '@/components/Layout'
-import { API_URL } from '@/config/index'
 import Link from 'next/link'
 export default function HomePage({ events }) {
-    console.log(events)
+    // console.log(events)
 
     return (
         <Layout>

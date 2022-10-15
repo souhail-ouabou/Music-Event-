@@ -5,10 +5,10 @@ import Link from 'next/link'
 import EventItem from '@/components/EventItem'
 import { API_URL } from '@/config/index'
 export default function SearchPage({ events }) {
-     const router = useRouter()
+    const router = useRouter()
     return (
-        <Layout title='Search Results'>
-            <Link href='/events'>Go Back</Link>
+        <Layout title="Search Results">
+            <Link href="/events">Go Back</Link>
             <h1>Search Results for {router.query.term} </h1>
             {events.length === 0 && <h3>No events to show</h3>}
 
@@ -23,29 +23,29 @@ export async function getServerSideProps({ query: { term } }) {
     const query = qs.stringify(
         {
             filters: {
-                $or: [ 
-                {
-                    name: {
-                        $contains: term,
+                $or: [
+                    {
+                        name: {
+                            $contains: term,
+                        },
                     },
-                },
-                {
-                    performers: {
-                        $contains: term,
+                    {
+                        performers: {
+                            $contains: term,
+                        },
                     },
-                },{
-                    description: {
-                        $contains: term,
+                    {
+                        description: {
+                            $contains: term,
+                        },
                     },
-                },
-                {
-                    venue: {
-                        $contains: term,
+                    {
+                        venue: {
+                            $contains: term,
+                        },
                     },
-                }
-            ]
+                ],
             },
-        
         },
         {
             encodeValuesOnly: true, // prettify URL
