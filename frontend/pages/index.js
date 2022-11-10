@@ -1,6 +1,7 @@
 import EventItem from '@/components/EventItem'
 import Layout from '@/components/Layout'
 import Link from 'next/link'
+import { API_URL } from '@/config/index'
 export default function HomePage({ events }) {
     // console.log(events)
 
